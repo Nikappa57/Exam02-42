@@ -3,14 +3,14 @@
 
 #define BUFFER_SIZE 999999
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	int	i;
+	int		i;
 	char	c;
-	int	bytes;
+	int		bytes;
 	char	*buffer;
 
-	if ((fd < 0) || (BUFFER_SIZE <= 0))
+	if (fd < 0)
 		return (NULL);
 	i = 0;
 	buffer = (char *) malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -33,19 +33,18 @@ char *get_next_line(int fd)
 # include <strings.h>
 # include <fcntl.h>
 # include <stdio.h>
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
 	int		fd;
 	char	*line;
-	(void)ac;
+	(void)argc;
 
-	fd = open(av[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
     while ((line = get_next_line(fd)) != 0)
 	{
 		printf("%s", line);
 		free(line);
 	}
 	close(fd);
-	system("leaks a.out");
 	return (0);
 } */

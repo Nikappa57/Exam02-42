@@ -4,7 +4,7 @@
 int	put_str(char *str)
 {
 	int	len;
-	
+
 	len = 0;
 	while (str && str[len])
 		len++;
@@ -20,7 +20,7 @@ void	put_nbr(long number, int base_n, char *base, int *size)
 	*size += write(1, &base[number % base_n], 1);
 }
 
-void put_nbr_sign(long number, int base_n, char *base, int *size)
+void	put_nbr_sign(long number, int base_n, char *base, int *size)
 {
 	if (number < 0)
 	{	
@@ -28,19 +28,18 @@ void put_nbr_sign(long number, int base_n, char *base, int *size)
 		number *= -1;
 	}
 	put_nbr(number, base_n, base, size);
-
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	int	i;
-	int	size;
-	
+	int		i;
+	int		size;
+
 	i = 0;
 	size = 0;
 	va_start(args, str);
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '%' && str[i + 1] == 's' && (i += 2))
 			size += put_str(va_arg(args, char *));
@@ -54,4 +53,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (size);
 }
-
